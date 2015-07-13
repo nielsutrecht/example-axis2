@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:ex="axis2.example.nibado.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="service" targetNamespace="axis2.example.nibado.com">
+    <wsdl:types>
+        <xsd:schema targetNamespace="axis2.example.nibado.com">
+            <xsd:element name="greeting">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="greetingResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="greeting" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="greetingRequest">
+        <wsdl:part element="ex:greeting" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="greetingResponse">
+        <wsdl:part element="ex:greetingResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:portType name="service">
+        <wsdl:operation name="greeting">
+            <wsdl:input message="ex:greetingRequest"/>
+            <wsdl:output message="ex:greetingResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="serviceSOAP" type="ex:service">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="greeting">
+            <soap:operation soapAction="xis2.example.nibado.com/NewOperation"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="service">
+        <wsdl:port binding="ex:serviceSOAP" name="serviceSOAP">
+            <soap:address location="http://www.example.org/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
