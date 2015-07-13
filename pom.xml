@@ -24,6 +24,7 @@
                     <wsdlFile>src/main/wsdl/service.wsdl</wsdlFile>
                     <databindingName>xmlbeans</databindingName>
                     <generateServerSide>true</generateServerSide>
+                    <generateServicesXml>true</generateServicesXml>
                 </configuration>
                 <executions>
                     <execution>
